@@ -1,0 +1,23 @@
+.emp-container{
+    display: flex;
+    border: 2px dashed gray;
+    justify-content: center;
+    padding: 1rem;
+    
+    
+}
+.emp-list{
+    flex: 1;
+    border: 2px dashed orange;
+    padding: 1rem;
+}
+.emp-detail{
+    flex: 3;
+    border: 2px dashed green;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+
+}
