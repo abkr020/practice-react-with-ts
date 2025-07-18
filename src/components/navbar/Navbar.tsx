@@ -4,7 +4,7 @@ const Navbar: React.FC = () => {
     return (
         <nav>
             <NavLink to="/">home</NavLink>
-            <NavLink to="/second">second</NavLink>
+            <NavLink to="/emp-database-management">emp</NavLink>
             <NavLink to="third">third</NavLink>
         </nav>
     )

@@ -1,0 +1,30 @@
+.form-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0,0.5);
+
+}
+.form-wrapper .form-div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: gray;
+  padding: 3rem;
+
+
+}
+.form-wrapper form{
+    display: flex;
+    background-color: rgb(185, 182, 182);
+    color: black;
+    flex-direction: column;
+}
+
+.form-wrapper input{
+    
+
+}
