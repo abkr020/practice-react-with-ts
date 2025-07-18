@@ -7,7 +7,7 @@ type structureType = {
 const FileExplorerPage = () => {
     const [structure, setStructure] = useState<structureType>(
         {
-            name: 'folder 1',
+            name: 'root',
             items: [
                 'a',
                 'b',
