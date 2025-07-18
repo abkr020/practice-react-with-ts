@@ -14,23 +14,6 @@ const EmpDatabaseManagement = () => {
             const stored = localStorage.getItem("emps");
             return stored ? JSON.parse(stored) : [];
         })
-    // [
-    // {
-    //     id: 0,
-    //     name: '0a',
-    //     email: '0@'
-    // },
-    // {
-    //     id: 1,
-    //     name: 'a1',
-    //     email: '1a'
-    // },
-    // {
-    //     id: 2,
-    //     name: '2b',
-    //     email: '2b@'
-    // }
-    // ]);
     console.log("selected ", selectedEmp);
 
     return (
@@ -41,22 +24,25 @@ const EmpDatabaseManagement = () => {
             <div className="emp-container">
                 <div className="emp-list">
                     <h2>emp list</h2>
-                    {emps.map((emp, i) => {
-                        return (
-                            <div key={i}>
+                    <div className="emp-name-list">
 
-                                <div onClick={() => setSelectedEmp(i)}>{emp.name}</div>
-                            </div>
-                        )
-                    })}
+                        {emps.map((emp, i) => {
+                            return (
+                                <div className={`single-emp-name ${selectedEmp == i ? 'selected-emp' : ''}`} key={i}>
+
+                                    <div onClick={() => setSelectedEmp(i)}>{emp.name}</div>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
                 <div className="emp-detail">
                     <h2>emp details</h2>
-                    {emps.map((emp,i) => {
+                    {emps.map((emp, i) => {
                         return (
                             <div key={i}>
                                 {i == selectedEmp && (
-                                // {emp.id == selectedEmp && (
+                                    // {emp.id == selectedEmp && (
                                     <>
                                         <div>id: {emp.id}</div>
                                         <div>name: {emp.name}</div>

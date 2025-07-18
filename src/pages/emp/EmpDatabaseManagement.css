@@ -11,6 +11,27 @@
     border: 2px dashed orange;
     padding: 1rem;
 }
+.emp-name-list{
+    /* padding: 1rem; */
+}
+.single-emp-name{
+    /* padding: 1rem; */
+    margin: 1rem;
+    /* border: 1px dashed yellow; */
+    text-align: center;   
+    /* display: inline-block; */
+}
+.selected-emp{
+    background-color: rgb(92, 92, 2);
+}
+.single-emp-name:hover{
+    /* padding: 1rem; */
+    /* margin: 1rem; */
+    /* border: 1px dashed yellow; */
+    background-color: gainsboro;
+    color: black;
+    cursor: pointer;
+}
 .emp-detail{
     flex: 3;
     border: 2px dashed green;

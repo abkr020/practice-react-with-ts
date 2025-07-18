@@ -12,6 +12,7 @@ type AddEmpFormProps = {
 const AddEmpForm: React.FC<AddEmpFormProps> = ({ setIsopen, setEmps }) => {
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
+    // const 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const newEmp: Emp = {
