@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RenderFE from "../../components/fileExplorerComponent/RenderFE";
 type structureType = {
     name: string;
     items?: (string | structureType)[];
@@ -36,6 +37,7 @@ const FileExplorerPage = () => {
     )
     return (
         <>
+        <RenderFE obj={structure} />
             <h1>file explorer</h1>
             {(Object.entries(structure) as [keyof structureType, any][]).map(([key, value]) => {
                 // console.log(key);
