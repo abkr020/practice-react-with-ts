@@ -1,48 +1,73 @@
 import { useState } from "react";
-
+type structureType = {
+    name: string;
+    items?: (string | structureType)[];
+}
 const FileExplorerPage = () => {
-    const [structure, setStructure] = useState({
-        name: 'folder 1',
-        items: [
-            'a',
-            'b',
-            'c',
-            {
-                name: 'folder 2',
-                items: [
-                    'a',
-                    'b',
-                    {
-                        name: 'folder 3',
-                        items: [
-                            'w',
-                            's',
-                            {
-                                name: 'folder 3'
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                name:'folder 0.5'
-            }
-        ]
-    })
+    const [structure, setStructure] = useState<structureType>(
+        {
+            name: 'folder 1',
+            items: [
+                'a',
+                'b',
+                'c',
+                {
+                    name: 'folder 2',
+                    items: [
+                        'a',
+                        'b',
+                        {
+                            name: 'folder 3',
+                            items: [
+                                'w',
+                                's',
+                                {
+                                    name: 'folder 3'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'folder 0.5'
+                }
+            ]
+        }
+    )
     return (
         <>
             <h1>file explorer</h1>
-            {Object.entries(structure).map(([key, value]) => {
-                console.log(key);
-                console.log(typeof (key));
-                console.log(typeof (structure[key]));
-                
-                // if (typeof (structure[key]) === 'string') {
-                //     console.log(key);
-                //    return <div>folder {structure[key]}</div>
-                // }
-                // if(typeof(structure[key]))
+            {(Object.entries(structure) as [keyof structureType, any][]).map(([key, value]) => {
+                // console.log(key);
+                // console.log(typeof (key));
+                // console.log(typeof (structure[key]));
+                if (typeof (structure[key]) === 'string') {
+                    console.log("a", key);
+                    return <div key={key}>folder {structure[key]}</div>
+                }
+                if (Array.isArray(structure[key])) {
+                    console.log("b", key);
+                    // console.log(key);
+                    
+                      return  (structure[key] as (string | structureType)[]).map((it, i) => {
+                            if (typeof (it) == 'string') {
+                                console.log("c", key);
+                                return <div key={i}>file {it}</div>
+                            }
+                            if (typeof (it) == 'object') {
+                                console.log("d", key);
+                                return <div key={i}>folder {it.name}</div>
+                            }
+                            return <div key={i}>c</div>
+                        })
+                    
+                }
+                return <div>g</div>
+
+
             })}
+
+
         </>
     )
 }
