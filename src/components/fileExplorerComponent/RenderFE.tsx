@@ -11,7 +11,9 @@ const RenderFE:React.FC<RenderFEProps> = ({ obj }) => {
     const [structure, setStructure] = useState<structureType>(obj)
     return (
         <>
-            <h1>RenderFE</h1>
+            {/* <h1>RenderFE</h1> */}
+            <div style={{marginLeft:'35px'}}>
+
             {(Object.entries(structure) as [keyof structureType, any][]).map(([key, value]) => {
                 // console.log(key);
                 // console.log(typeof (key));
@@ -31,7 +33,10 @@ const RenderFE:React.FC<RenderFEProps> = ({ obj }) => {
                         }
                         if (typeof (it) == 'object') {
                             console.log("d", key);
-                            return <div key={i}>folder {it.name}</div>
+                            // return <div key={i}>folder {it.name}</div>
+                            return(
+                                <RenderFE obj={it}/>
+                            )
                         }
                         return <div key={i}>c</div>
                     })
@@ -41,6 +46,7 @@ const RenderFE:React.FC<RenderFEProps> = ({ obj }) => {
 
 
             })}
+            </div>
         </>
     )
 }
