@@ -6,8 +6,9 @@ type structureType = {
 }
 type RenderFEProps = {
     obj: structureType;
+    currentPath: number[];
 }
-const RenderFE: React.FC<RenderFEProps> = ({ obj }) => {
+const RenderFE: React.FC<RenderFEProps> = ({ obj, currentPath }) => {
     const [structure, setStructure] = useState<structureType>(obj)
     return (
         <>
@@ -20,7 +21,9 @@ const RenderFE: React.FC<RenderFEProps> = ({ obj }) => {
                     // console.log(typeof (structure[key]));
                     if (typeof (structure[key]) === 'string') {
                         console.log("a", key);
-                        return <div key={key}>folder {structure[key]}</div>
+                        return <div
+                            onClick={(e) => console.log("current path", currentPath)}
+                            key={key}>folder {structure[key]}</div>
                     }
                     if (Array.isArray(structure[key])) {
                         console.log("b", key);
@@ -28,7 +31,7 @@ const RenderFE: React.FC<RenderFEProps> = ({ obj }) => {
 
                         return (
                             <div key={key}
-                            style={{ marginLeft: '35px' }}
+                                style={{ marginLeft: '35px' }}
                             >
 
                                 {(structure[key] as (string | structureType)[]).map((it, i) => {
@@ -40,7 +43,7 @@ const RenderFE: React.FC<RenderFEProps> = ({ obj }) => {
                                         console.log("d", key);
                                         // return <div key={i}>folder {it.name}</div>
                                         return (
-                                            <RenderFE obj={it} />
+                                            <RenderFE obj={it} currentPath={[...currentPath, currentPath.length]} />
                                         )
                                     }
                                 })}

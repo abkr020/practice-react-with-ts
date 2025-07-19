@@ -13,12 +13,12 @@ const FileExplorerPage = () => {
                 'b',
                 'c',
                 {
-                    name: 'folder 2',
+                    name: 'folder 1',
                     items: [
                         'a',
                         'b',
                         {
-                            name: 'folder 3',
+                            name: 'folder 2',
                             items: [
                                 'w',
                                 's',
@@ -37,7 +37,7 @@ const FileExplorerPage = () => {
     )
     return (
         <>
-        <RenderFE obj={structure} />
+        <RenderFE obj={structure} currentPath={[0]}/>
             <h1>file explorer</h1>
             {(Object.entries(structure) as [keyof structureType, any][]).map(([key, value]) => {
                 // console.log(key);
