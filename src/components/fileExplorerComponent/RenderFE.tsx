@@ -6,44 +6,87 @@ type structureType = {
 }
 type RenderFEProps = {
     obj: structureType;
-    currentPath: number[];
+    currentPath: string[];
+    setStructure: React.Dispatch<React.SetStateAction<structureType>>;
+    handleFileAdd: (currentPath: string[]) => void;
 }
-const RenderFE: React.FC<RenderFEProps> = ({ obj, currentPath }) => {
-    const [structure, setStructure] = useState<structureType>(obj)
+const RenderFE: React.FC<RenderFEProps> = ({ obj, currentPath, setStructure, handleFileAdd }) => {
+    // const [structure, setStructure] = useState<structureType>(obj)
+    //     const handleFileAdd = (currentPath: string[]) => {
+    //         setStructure(pre => {
+    // pre
+    //         })
+
+    //     }
     return (
         <>
             {/* <h1>RenderFE</h1> */}
 
             <div>
-                {(Object.entries(structure) as [keyof structureType, any][]).map(([key, value]) => {
+                {(Object.entries(obj) as [keyof structureType, any][]).map(([key, value]) => {
                     // console.log(key);
+                    // console.log("aa",value);
                     // console.log(typeof (key));
                     // console.log(typeof (structure[key]));
-                    if (typeof (structure[key]) === 'string') {
-                        console.log("a", key);
+                    if (typeof (obj[key]) === 'string') {
+                        // console.log("a", key);
+                        let keyPath =`${currentPath}/${key}-folder`;
                         return <div
-                            onClick={(e) => console.log("current path", currentPath)}
-                            key={key}>folder {structure[key]}</div>
-                    }
-                    if (Array.isArray(structure[key])) {
-                        console.log("b", key);
-                        // console.log(key);
+                            style={{ display: 'flex', gap: '20px', border: '1px dashed tomato' }}
+                            // onClick={(e) => console.log("current path", currentPath)}
+                            key={keyPath}>folder {obj[key]}
+                            <div
+                                onClick={() => {
+                                    // console.log(currentPath);
+                                    // currentPath?.map((path)=>{
+                                    //     // setStructure((prev)=>{
 
+                                    //     // })
+                                    // })
+
+                                }}
+                            >
+                                +folder
+                            </div>
+                            <div
+                                onClick={() => {
+                                    // const tempObj = {};
+                                    // console.log(currentPath);
+                                    // console.log("pre obj", obj);
+                                    // obj={...obj,items:[...obj?.items,'z']}
+                                    // console.log("updated obj ", obj);
+                                    // currentPath?.map((path)=>{
+                                    handleFileAdd(currentPath);
+
+                                    // })
+
+                                }}
+                            >
+                                +file
+                            </div>
+                        </div>
+                    }
+                    if (Array.isArray(obj[key])) {
+                        // console.log("b", key);
+                        // console.log(key);
+                        const keyPath = `${currentPath}/${key}`
                         return (
-                            <div key={key}
+                            <div key={keyPath}
                                 style={{ marginLeft: '35px' }}
                             >
 
-                                {(structure[key] as (string | structureType)[]).map((it, i) => {
+                                {(obj[key] as (string | structureType)[]).map((it, i) => {
                                     if (typeof (it) == 'string') {
-                                        console.log("c", key);
-                                        return <div key={i}>file {it}</div>
+                                        // console.log("c", key);
+                                        return <div key={`${currentPath}/${i}-file`}>file {it}</div>
                                     }
                                     if (typeof (it) == 'object') {
-                                        console.log("d", key);
+                                        // console.log("d", key);
                                         // return <div key={i}>folder {it.name}</div>
                                         return (
-                                            <RenderFE obj={it} currentPath={[...currentPath, currentPath.length]} />
+                                            <RenderFE 
+                                            key={`${currentPath}/${it.name}`}
+                                            obj={it} currentPath={[...currentPath, it?.name]} setStructure={setStructure} handleFileAdd={handleFileAdd} />
                                         )
                                     }
                                 })}
