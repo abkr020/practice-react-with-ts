@@ -16,9 +16,36 @@ const SvgString = () => {
             setVal(newVal);
         }
     }
+    const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+
+        let newVal = `M 100 200 Q 550 100 1000 200`;
+        setVal(newVal);
+        setTimeout(() => {
+            newVal = `M 100 200 Q 550 300 1000 200`;
+            setVal(newVal);
+
+        }, 200);
+        setTimeout(() => {
+            newVal = `M 100 200 Q 550 150 1000 200`;
+            setVal(newVal);
+
+        }, 400);
+        setTimeout(() => {
+            newVal = `M 100 200 Q 550 250 1000 200`;
+            setVal(newVal);
+
+        }, 600);
+        setTimeout(() => {
+            newVal = `M 100 200 Q 550 200 1000 200`;
+            setVal(newVal);
+
+        }, 800);
+
+    }
     return (
         <div style={{ backgroundColor: 'darkgray', height: '50vh', padding: '20px' }}
             onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             ref={containerRef}
         >
             <svg height='100%' width='100%' style={{ backgroundColor: 'black' }} >
