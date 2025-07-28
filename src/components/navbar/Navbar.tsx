@@ -6,6 +6,8 @@ const Navbar: React.FC = () => {
             <NavLink to="/">home</NavLink>
             <NavLink to="/emp-database-management">emp</NavLink>
             <NavLink to="third">third</NavLink>
+            <NavLink to="/file-explorer">fileExplorer</NavLink>
+
         </nav>
     )
 }
